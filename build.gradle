@@ -1,0 +1,52 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath('org.springframework.boot:spring-boot-gradle-plugin:1.5.10.RELEASE')
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+group = 'be.cegeka.transaction'
+version = '1.0.0'
+
+sourceCompatibility = 1.9
+targetCompatibility = 1.9
+
+defaultTasks 'clean', 'build'
+
+idea {
+    module {
+        excludeDirs += file('.idea')
+        excludeDirs += file('build')
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.5.1'
+}
+
+dependencies {
+    compile 'org.apache.commons:commons-lang3:3.6'
+    compile 'org.springframework.boot:spring-boot-starter-web:1.5.10.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa:1.5.10.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-actuator:1.5.10.RELEASE'
+    compile 'javax.inject:javax.inject:1'
+    compile 'com.h2database:h2:1.4.196'
+    compile 'javax.xml.bind:jaxb-api:2.3.0'
+    compile 'com.sun.xml.bind:jaxb-core:2.3.0'
+    compile 'com.sun.xml.bind:jaxb-impl:2.3.0'
+
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.assertj:assertj-core:3.8.0'
+    testCompile 'org.springframework.boot:spring-boot-starter-test:1.5.10.RELEASE'
+}
